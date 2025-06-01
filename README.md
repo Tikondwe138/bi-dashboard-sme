@@ -63,7 +63,7 @@ License
 MIT License
 
 Contact
-For questions or collaboration, reach out: your.email@example.com
+For questions or collaboration, reach out: mathiusmelo@gmail.com
 
 Note: This dashboard is designed to help Malawian SMEs leverage their data for growth. If you are an SME owner or data enthusiast, your feedback is highly appreciated!
 
