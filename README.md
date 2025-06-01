@@ -30,9 +30,44 @@ BI-Dashboard-SME is a powerful yet easy-to-use business intelligence dashboard t
 
 ---
 
+
 ## Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/bi-dashboard-sme.git
    cd bi-dashboard-sme
+
+
+Create and activate a virtual environment:
+
+ 
+python -m venv .venv
+source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+Install dependencies:
+
+ 
+pip install -r requirements.txt
+
+Run the app:
+
+ 
+streamlit run dashboard.py
+Usage
+Upload your SME sales data in CSV format (sample data format included) and explore interactive visualizations for your sales and customer trends. Use sidebar filters to customize your analysis based on date ranges, regions, and product categories.
+
+Contribution
+This project is a work in progress. Contributions and suggestions to improve usability, add features, or enhance visualizations are very welcome. Feel free to open issues or submit pull requests.
+
+License
+MIT License
+
+Contact
+For questions or collaboration, reach out: your.email@example.com
+
+Note: This dashboard is designed to help Malawian SMEs leverage their data for growth. If you are an SME owner or data enthusiast, your feedback is highly appreciated!
+
+
+---
+
+If you want me to help write the initial `requirements.txt` or a basic folder structure, just say th
