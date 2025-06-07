@@ -1,0 +1,101 @@
+Date,Region,Product,Sales,Profit,Customer Age,Customer Gender
+2024-01-01,Southern,Maize Seeds,1409,349,33,Male
+2024-01-02,Central,Maize Seeds,9935,1166,45,Male
+2024-01-03,Central,Maize Seeds,4582,671,56,Male
+2024-01-04,Southern,Fertilizer,9928,1825,46,Female
+2024-01-05,Central,Fertilizer,7924,1331,27,Male
+2024-01-06,Northern,Maize Seeds,2519,443,40,Female
+2024-01-07,Southern,Pesticides,1711,420,52,Male
+2024-01-08,Northern,Maize Seeds,5803,1542,57,Female
+2024-01-09,Southern,Fertilizer,2139,233,32,Female
+2024-01-10,Central,Fertilizer,2654,467,47,Female
+2024-01-11,Central,Pesticides,6820,967,35,Male
+2024-01-12,Southern,Fertilizer,9751,2397,28,Female
+2024-01-13,Northern,Pesticides,4598,1089,21,Male
+2024-01-14,Central,Pesticides,7572,1162,31,Female
+2024-01-15,Central,Irrigation Kit,7482,2072,59,Female
+2024-01-16,Central,Pesticides,3287,490,53,Female
+2024-01-17,Southern,Animal Feed,8019,2241,43,Female
+2024-01-18,Central,Fertilizer,9348,1857,21,Male
+2024-01-19,Central,Fertilizer,7916,1735,42,Female
+2024-01-20,Southern,Irrigation Kit,9669,1453,53,Male
+2024-01-21,Southern,Maize Seeds,9797,2450,59,Female
+2024-01-22,Central,Pesticides,8123,1069,18,Female
+2024-01-23,Southern,Fertilizer,9317,2632,58,Female
+2024-01-24,Southern,Animal Feed,4258,555,28,Male
+2024-01-25,Southern,Pesticides,9005,935,41,Female
+2024-01-26,Central,Maize Seeds,4946,1363,23,Male
+2024-01-27,Southern,Irrigation Kit,2133,630,52,Male
+2024-01-28,Central,Irrigation Kit,3705,566,56,Female
+2024-01-29,Central,Animal Feed,4295,1041,43,Female
+2024-01-30,Northern,Animal Feed,8397,1042,32,Male
+2024-01-31,Northern,Maize Seeds,4770,1038,18,Male
+2024-02-01,Southern,Maize Seeds,4750,539,20,Female
+2024-02-02,Central,Animal Feed,4899,762,49,Male
+2024-02-03,Southern,Fertilizer,8744,1299,48,Female
+2024-02-04,Central,Maize Seeds,2588,599,40,Female
+2024-02-05,Northern,Irrigation Kit,1887,442,59,Male
+2024-02-06,Central,Irrigation Kit,6559,1706,24,Male
+2024-02-07,Central,Fertilizer,9786,1856,45,Male
+2024-02-08,Northern,Irrigation Kit,5092,1399,22,Female
+2024-02-09,Southern,Maize Seeds,1828,421,52,Male
+2024-02-10,Central,Fertilizer,3724,675,48,Male
+2024-02-11,Northern,Maize Seeds,3697,649,42,Female
+2024-02-12,Northern,Pesticides,7930,1897,64,Female
+2024-02-13,Central,Fertilizer,5861,841,21,Male
+2024-02-14,Southern,Pesticides,1936,213,48,Male
+2024-02-15,Central,Animal Feed,2312,624,22,Male
+2024-02-16,Southern,Fertilizer,7615,944,54,Male
+2024-02-17,Southern,Animal Feed,1651,369,44,Female
+2024-02-18,Northern,Fertilizer,6147,908,43,Male
+2024-02-19,Southern,Pesticides,8491,1386,22,Male
+2024-02-20,Northern,Animal Feed,2638,302,31,Female
+2024-02-21,Central,Pesticides,2127,586,41,Female
+2024-02-22,Central,Irrigation Kit,9900,2383,57,Male
+2024-02-23,Southern,Animal Feed,5905,1690,24,Male
+2024-02-24,Northern,Maize Seeds,2753,684,27,Female
+2024-02-25,Northern,Animal Feed,4450,1083,31,Female
+2024-02-26,Southern,Irrigation Kit,5114,1437,21,Male
+2024-02-27,Southern,Irrigation Kit,5533,602,39,Male
+2024-02-28,Southern,Pesticides,3647,905,53,Female
+2024-02-29,Southern,Maize Seeds,2832,325,62,Male
+2024-03-01,Southern,Maize Seeds,7049,1526,27,Female
+2024-03-02,Central,Maize Seeds,6050,1046,20,Female
+2024-03-03,Central,Fertilizer,2684,458,53,Female
+2024-03-04,Southern,Fertilizer,4878,1331,29,Female
+2024-03-05,Central,Fertilizer,6442,1652,44,Male
+2024-03-06,Northern,Fertilizer,2771,489,20,Female
+2024-03-07,Central,Fertilizer,8541,1451,32,Male
+2024-03-08,Central,Fertilizer,7528,1247,22,Female
+2024-03-09,Northern,Animal Feed,7548,1780,52,Female
+2024-03-10,Central,Maize Seeds,5279,716,34,Male
+2024-03-11,Central,Animal Feed,8119,1373,38,Female
+2024-03-12,Southern,Animal Feed,2894,512,54,Male
+2024-03-13,Northern,Maize Seeds,8144,817,52,Male
+2024-03-14,Northern,Irrigation Kit,2146,621,39,Female
+2024-03-15,Southern,Maize Seeds,5920,1192,60,Female
+2024-03-16,Northern,Irrigation Kit,5844,1232,30,Female
+2024-03-17,Southern,Irrigation Kit,3851,859,37,Female
+2024-03-18,Southern,Maize Seeds,5978,940,45,Female
+2024-03-19,Northern,Irrigation Kit,8244,1938,50,Female
+2024-03-20,Southern,Fertilizer,2389,374,60,Female
+2024-03-21,Central,Fertilizer,6085,881,30,Male
+2024-03-22,Central,Maize Seeds,5011,1487,57,Male
+2024-03-23,Northern,Irrigation Kit,4185,1019,42,Female
+2024-03-24,Northern,Fertilizer,3417,790,18,Male
+2024-03-25,Northern,Fertilizer,3881,1012,62,Female
+2024-03-26,Central,Animal Feed,5082,1440,25,Female
+2024-03-27,Central,Irrigation Kit,9702,2887,56,Female
+2024-03-28,Northern,Animal Feed,9270,1718,53,Female
+2024-03-29,Central,Irrigation Kit,8373,1271,33,Female
+2024-03-30,Southern,Irrigation Kit,4919,762,22,Female
+2024-03-31,Central,Pesticides,6502,1065,52,Male
+2024-04-01,Central,Fertilizer,4788,845,27,Male
+2024-04-02,Central,Irrigation Kit,7678,1275,47,Female
+2024-04-03,Central,Fertilizer,7883,1402,55,Male
+2024-04-04,Southern,Irrigation Kit,8814,891,40,Female
+2024-04-05,Northern,Irrigation Kit,9818,2449,52,Male
+2024-04-06,Northern,Fertilizer,5471,1023,19,Female
+2024-04-07,Northern,Irrigation Kit,3704,993,26,Male
+2024-04-08,Northern,Animal Feed,1444,168,45,Male
+2024-04-09,Northern,Fertilizer,1823,277,38,Male

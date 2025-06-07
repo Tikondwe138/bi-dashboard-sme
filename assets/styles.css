@@ -1,0 +1,36 @@
+/* assets/styles.css - Custom Streamlit CSS */
+
+/* Make entire app background white and text black */
+body, .block-container, .main {
+  background-color: #ffffff !important; /* White background */
+  color: #000000 !important; /* Black text */
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Headers */
+h1, h2, h3 {
+  color: #000000 !important; /* Black headers */
+}
+
+/* Padding for main content container */
+.block-container {
+  padding-top: 1rem;
+}
+
+/* Metric container styling */
+.metric-container {
+  background-color: #ffffff !important;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #000000 !important; /* Ensure metric text is black */
+}
+
+/* Section headers with dark green */
+.region-header {
+  color: #064635 !important; /* Dark green */
+  font-size: 18px;
+  font-weight: 600;
+}
