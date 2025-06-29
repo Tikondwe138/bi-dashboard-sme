@@ -1,9 +1,9 @@
-/* assets/styles.css - Unified White/Black/Green Theme */
+/* assets/styles.css - Professional Industry Dashboard Theme */
 
 /* ========== Global Styles ========== */
 body, .block-container, .main {
-  background-color: #ffffff !important; /* Pure white canvas */
-  color: #000000 !important;            /* Universal black text */
+  background-color: #f7f9fa !important; /* Subtle off-white for less eye strain */
+  color: #222 !important;
   font-family: 'Segoe UI', 'Arial', sans-serif;
   margin: 0;
   padding: 0;
@@ -11,113 +11,174 @@ body, .block-container, .main {
 }
 
 /* ========== Headings & Text ========== */
-h1, h2, h3, h4, h5, h6, p, span, div {
-  color: #000000 !important; /* Force all text black */
+h1, h2, h3, h4, h5, h6 {
+  color: #064635 !important; /* Industry green for headings */
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+p, span, div {
+  color: #222 !important;
   font-family: inherit;
 }
 
 /* ========== Sidebar ========== */
 .stSidebar, .css-1d391kg, .css-1v3fvcr {
   background-color: #ffffff !important;
-  color: #000000 !important;
+  color: #222 !important;
   border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+}
+.stSidebar h1, .stSidebar h2, .stSidebar .css-1v3fvcr, .css-1d391kg h1 {
+  color: #064635 !important;
+  font-weight: 700;
 }
 
-.stSidebar h1, .stSidebar h2, .stSidebar .css-1v3fvcr, .css-1d391kg h1 {
-  color: #000000 !important; /* Black sidebar text */
+/* ========== Sidebar Button Text ========== */
+.stSidebar .stButton button,
+.stSidebar button,
+.stSidebar .stDownloadButton button {
+  background-color: #064635 !important;
+  color: #fff !important;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(6,70,53,0.08);
+  letter-spacing: 0.01em;
+  text-align: left !important; /* Align text to the left for sidebar */
+}
+
+.stSidebar .stButton button:hover,
+.stSidebar button:hover,
+.stSidebar .stDownloadButton button:hover {
+  background-color: #046326 !important;
+  box-shadow: 0 4px 12px rgba(6,70,53,0.12);
 }
 
 /* ========== Metric Cards ========== */
-.metric-container {
-  background-color: #ffffff !important;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+.metric-container, .stMetric {
+  background-color: #fff !important;
+  border-radius: 0.75rem;
+  padding: 1.2rem 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(6,70,53,0.07);
   text-align: center;
-  color: #000000 !important;
+  color: #222 !important;
+  border: 1px solid #e0e0e0;
+}
+.stMetricLabel {
+  color: #666 !important;
+  font-size: 1rem;
+}
+.stMetricValue {
+  color: #064635 !important;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 /* ========== Section Headers ========== */
-.region-header, .section-header {
-  color: #064635 !important; /* Dark green accent */
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-top: 1.5rem;
+.section-header {
+  color: #064635 !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+hr {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 1rem 0 2rem 0;
 }
 
 /* ========== Tables (st.dataframe) ========== */
 .stDataFrame, .css-1p8u58t, .css-hi6a2p {
-  background-color: #ffffff !important;
-  color: #000000 !important;
+  background-color: #fff !important;
+  color: #222 !important;
   border-radius: 0.5rem;
-  font-size: 0.95rem;
-  padding: 0.5rem !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  font-size: 0.95rem;                /* Slightly smaller for desktop fit */
+  padding: 0.25rem !important;        /* Less padding for compactness */
+  box-shadow: 0 1px 4px rgba(6,70,53,0.07);
+  border: 1px solid #e0e0e0;
+  max-width: 1100px;                  /* Limit table width for desktop */
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+}
+.stDataFrame th, .stDataFrame td {
+  padding: 0.35rem 0.5rem !important; /* Tighter cell padding */
+  white-space: nowrap;                /* Prevent text wrapping for compactness */
 }
 
 /* ========== Charts (Plotly) ========== */
 .stPlotlyChart > div {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border-radius: 0.5rem !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07) !important;
-  padding: 0.5rem !important;
+  background-color: #fff !important;
+  color: #222 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 8px rgba(6,70,53,0.07) !important;
+  padding: 0.25rem !important;         /* Less padding for compactness */
+  border: 1px solid #e0e0e0;
+  max-width: 1100px;                   /* Limit chart width for desktop */
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .plotly-graph-div .main-svg {
-  background-color: #ffffff !important;
+  background-color: #fff !important;
+  max-width: 1000px !important;        /* Prevents SVG from overflowing */
+  height: auto !important;
 }
 
 /* ========== Inputs & Buttons ========== */
 .stButton button, button {
   background-color: #064635 !important;
-  color: #ffffff !important;
+  color: #fff !important;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background 0.2s;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(6,70,53,0.08);
+  letter-spacing: 0.01em;
 }
-
 .stButton button:hover, button:hover {
   background-color: #046326 !important;
+  box-shadow: 0 4px 12px rgba(6,70,53,0.12);
 }
-
 .stTextInput > div > input, .stSelectbox > div, .stSlider > div {
   background-color: #f8f8f8 !important;
-  color: #000000 !important;
+  color: #222 !important;
   border-radius: 0.4rem;
   border: 1px solid #e0e0e0 !important;
   font-size: 1rem;
+  padding: 0.5rem 0.75rem;
 }
-
 .stRadio > div, .stSelectbox > div, .stSlider > div {
-  color: #000000 !important;
+  color: #222 !important;
 }
 
 /* ========== Alerts & Info Boxes ========== */
 .stAlert, .css-1t8l2tu, .css-1w7v3tn {
-  background-color: #f4f4f4 !important;
-  border-left: 4px solid #064635 !important;
-  color: #000000 !important;
+  background-color: #eafaf1 !important;
+  border-left: 5px solid #064635 !important;
+  color: #222 !important;
   border-radius: 0.5rem;
-  padding: 1rem !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  padding: 1.1rem !important;
+  box-shadow: 0 1px 4px rgba(6,70,53,0.05);
+  font-size: 1.05rem;
 }
 
 /* ========== Links ========== */
 a, .stMarkdown a, .css-znku1x, .stLink {
   color: #064635 !important;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.2s;
 }
-
 a:hover, .stMarkdown a:hover, .stLink:hover {
   text-decoration: underline;
   color: #046326 !important;
@@ -125,18 +186,22 @@ a:hover, .stMarkdown a:hover, .stLink:hover {
 
 /* ========== Footer ========== */
 footer, .footer {
-  color: #666666 !important;
+  color: #666 !important;
   background: transparent !important;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
   border: none;
+  letter-spacing: 0.01em;
 }
 
 /* ========== Misc ========== */
-hr {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 2rem 0 1rem 0;
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f7f9fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 5px;
 }

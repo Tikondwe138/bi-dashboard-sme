@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import io
+import xlsxwriter
 
 from src.data_loader import load_data
 from src.kpis import calculate_kpis
@@ -27,52 +29,157 @@ def dashboard_page(df):
         "<span style='font-size:1.1rem;'>Empowering SME owners in Malawi with clear, actionable data.</span>",
         unsafe_allow_html=True
     )
-
     st.markdown("---")
 
+    # Sidebar filters
+    regions = df['Region'].unique()
+    products = df['Product'].unique()
+    date_min, date_max = df['Date'].min(), df['Date'].max()
+
+    selected_regions = st.sidebar.multiselect("Filter by Region", regions, default=list(regions))
+    selected_products = st.sidebar.multiselect("Filter by Product", products, default=list(products))
+    date_range = st.sidebar.date_input("Date Range", [date_min, date_max])
+    if isinstance(date_range, tuple) or isinstance(date_range, list):
+        start_date, end_date = date_range[0], date_range[-1]
+    else:
+        start_date = end_date = date_range
+
+    filtered_df = df[
+        (df['Region'].isin(selected_regions)) &
+        (df['Product'].isin(selected_products)) &
+        (df['Date'] >= pd.to_datetime(start_date)) &
+        (df['Date'] <= pd.to_datetime(end_date))
+    ]
+
+    # KPIs
     st.subheader("Key Performance Indicators")
-    render_kpis(calculate_kpis(df))
-
+    render_kpis(calculate_kpis(filtered_df))
     st.markdown("---")
 
-    st.subheader("Business Insight")
-    st.info(generate_insight(df))
-
-    st.markdown("---")
-
-    col1, col2 = st.columns([1.5, 1])
+    # Regional Sales and Gender Distribution side by side
+    st.subheader("Regional Sales & Gender Distribution")
+    col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.subheader("Sales by Region")
-        fig_region = sales_by_region(df)
+        fig_region = sales_by_region(filtered_df)
         fig_region.update_layout(
+            autosize=False,
+            width=520, height=340,
+            margin=dict(l=10, r=10, t=40, b=10),
             plot_bgcolor='white',
             paper_bgcolor='white',
-            font=dict(color="#222"),
-            margin=dict(l=0, r=0, t=30, b=0)
+            font=dict(color="#222")
         )
-        st.plotly_chart(fig_region, use_container_width=True)
+        st.plotly_chart(fig_region, use_container_width=False)
     with col2:
-        st.subheader("Customer Gender Distribution")
-        fig_gender = gender_pie(df)
+        fig_gender = gender_pie(filtered_df)
         fig_gender.update_layout(
+            autosize=False,
+            width=340, height=340,
+            margin=dict(l=10, r=10, t=40, b=10),
             plot_bgcolor='white',
             paper_bgcolor='white',
-            font=dict(color="#222"),
-            margin=dict(l=0, r=0, t=30, b=0)
+            font=dict(color="#222")
         )
-        st.plotly_chart(fig_gender, use_container_width=True)
-
+        st.plotly_chart(fig_gender, use_container_width=False)
     st.markdown("---")
 
+    # Customer Age Distribution
     st.subheader("Customer Age Distribution")
-    fig_age = age_distribution(df)
+    fig_age = age_distribution(filtered_df)
     fig_age.update_layout(
+        autosize=False,
+        width=860, height=320,
+        margin=dict(l=10, r=10, t=40, b=10),
         plot_bgcolor='white',
         paper_bgcolor='white',
-        font=dict(color="#222"),
-        margin=dict(l=0, r=0, t=30, b=0)
+        font=dict(color="#222")
     )
-    st.plotly_chart(fig_age, use_container_width=True)
+    st.plotly_chart(fig_age, use_container_width=False)
+    st.markdown("---")
+
+    # Business Insight
+    st.subheader("Business Insight")
+    st.info(generate_insight(filtered_df))
+    st.markdown("---")
+
+    # Repeat vs. new customers
+    filtered_df = filtered_df.sort_values('Date')
+    filtered_df['Is New Customer'] = ~filtered_df['Customer ID'].duplicated()
+    repeat_count = filtered_df['Is New Customer'].value_counts()
+    st.write("New vs. Repeat Customers", repeat_count)
+
+    # Simple churn: customers who haven't purchased in last 30 days
+    last_date = filtered_df['Date'].max()
+    churned = filtered_df.groupby('Customer ID')['Date'].max() < (last_date - pd.Timedelta(days=30))
+    st.write("Churned Customers", churned.sum())
+
+    # Drilldown: click a region bar to see details
+    st.subheader("Drilldown: Sales by Region (Filtered)")
+    region_fig = sales_by_region(filtered_df)
+    region_fig.update_layout(
+        autosize=False,
+        width=600, height=340,
+        margin=dict(l=10, r=10, t=40, b=10),
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        font=dict(color="#222")
+    )
+    st.plotly_chart(region_fig, use_container_width=False)
+
+    # Sales/profit by product
+    st.subheader("Sales by Product")
+    prod_sales = filtered_df.groupby('Product', as_index=False).agg({'Sales':'sum', 'Profit':'sum'})
+    fig_prod = px.bar(prod_sales, x='Product', y='Sales', color='Product', title='Sales by Product')
+    fig_prod.update_layout(
+        autosize=False,
+        width=600, height=340,
+        margin=dict(l=10, r=10, t=40, b=10),
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        font=dict(color="#222")
+    )
+    st.plotly_chart(fig_prod, use_container_width=False)
+
+    # Top/bottom products
+    top_products = prod_sales.sort_values('Sales', ascending=False).head(3)
+    bottom_products = prod_sales.sort_values('Sales').head(3)
+    st.write("Top Products", top_products)
+    st.write("Bottom Products", bottom_products)
+
+    # Time aggregation option
+    agg_option = st.sidebar.selectbox("Aggregate by", ["Daily", "Weekly", "Monthly"])
+    if agg_option == "Weekly":
+        time_df = filtered_df.resample('W-MON', on='Date').agg({'Sales':'sum', 'Profit':'sum'}).reset_index()
+    elif agg_option == "Monthly":
+        time_df = filtered_df.resample('M', on='Date').agg({'Sales':'sum', 'Profit':'sum'}).reset_index()
+    else:
+        time_df = filtered_df.copy()
+
+    st.subheader(f"Sales & Profit Over Time ({agg_option})")
+    fig_time = px.line(time_df, x='Date', y=['Sales', 'Profit'], title=f'Sales & Profit Over Time ({agg_option})')
+    fig_time.update_layout(
+        autosize=False,
+        width=860, height=320,
+        margin=dict(l=10, r=10, t=40, b=10),
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        font=dict(color="#222")
+    )
+    st.plotly_chart(fig_time, use_container_width=False)
+
+    # Excel download for filtered data
+    def to_excel(df):
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df.to_excel(writer, index=False, sheet_name='Sheet1')
+        return output.getvalue()
+
+    st.sidebar.download_button(
+        label="Download Filtered Data as Excel",
+        data=to_excel(filtered_df),
+        file_name='filtered_data.xlsx',
+        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
 
 # ========== ANOMALY DETECTION ==========
 def anomalies_page(df):
@@ -105,12 +212,14 @@ def anomalies_page(df):
         ))
 
     fig.update_layout(
+        autosize=False,
+        width=860, height=320,
         plot_bgcolor='white',
         paper_bgcolor='white',
         font=dict(color="#222"),
         margin=dict(l=0, r=0, t=30, b=0)
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=False)
 
 # ========== FORECASTING ==========
 def forecast_page(df):
@@ -139,12 +248,14 @@ def forecast_page(df):
     ))
 
     fig.update_layout(
+        autosize=False,
+        width=860, height=320,
         plot_bgcolor='white',
         paper_bgcolor='white',
         font=dict(color="#222"),
         margin=dict(l=0, r=0, t=30, b=0)
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=False)
 
 # ========== SEGMENTATION ==========
 def segmentation_page(df):
@@ -169,12 +280,14 @@ def segmentation_page(df):
         hover_data=['Customer ID']
     )
     fig.update_layout(
+        autosize=False,
+        width=860, height=320,
         plot_bgcolor='white',
         paper_bgcolor='white',
         font=dict(color="#222"),
         margin=dict(l=0, r=0, t=30, b=0)
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=False)
 
 # ========== FOOTER ==========
 def add_footer():
@@ -195,7 +308,25 @@ def main():
         "Customer Segmentation"
     ])
 
-    df = load_data()
+    st.sidebar.header("Data Options")
+    uploaded_file = st.sidebar.file_uploader("Upload your CSV data", type=["csv"])
+    if uploaded_file:
+        df = pd.read_csv(uploaded_file, parse_dates=["Date"])
+        st.success("Custom data loaded!")
+    else:
+        df = load_data()
+
+    # Download original/loaded data as CSV
+    def convert_df(df):
+        return df.to_csv(index=False).encode('utf-8')
+
+    st.sidebar.download_button(
+        label="Download Current Data as CSV",
+        data=convert_df(df),
+        file_name='filtered_data.csv',
+        mime='text/csv'
+    )
+
     if df is None or df.empty:
         st.error("No data loaded. Please check your data source.")
         return

@@ -7,3 +7,9 @@ openpyxl>=3.1
 scikit-learn>=1.0
 prophet>=1.1
 numpy>=1.21
+# For PDF export
+fpdf>=1.7
+# For advanced drilldown (optional, if you want click events)
+streamlit-plotly-events
+# For enhanced data tables (optional)
+streamlit-aggrid
