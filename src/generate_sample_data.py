@@ -7,6 +7,13 @@ import random
 import os
 
 def generate_sample_data(output_path="data/sample_sales_data.csv", num_days=100):
+    """
+    Generate sample sales data for the SME BI Dashboard.
+
+    Args:
+        output_path (str): Path to save the generated CSV file.
+        num_days (int): Number of days of data to generate.
+    """
     np.random.seed(42)
     random.seed(42)
 
@@ -18,7 +25,7 @@ def generate_sample_data(output_path="data/sample_sales_data.csv", num_days=100)
     dates = [start_date + timedelta(days=i) for i in range(num_days)]
 
     data = []
-    for date in dates:
+    for i, date in enumerate(dates):
         region = random.choice(regions)
         product = random.choice(products)
         sales = random.randint(1000, 10000)
@@ -27,6 +34,7 @@ def generate_sample_data(output_path="data/sample_sales_data.csv", num_days=100)
         gender = random.choice(genders)
 
         data.append({
+            "Customer ID": i + 1,
             "Date": date.strftime("%Y-%m-%d"),
             "Region": region,
             "Product": product,

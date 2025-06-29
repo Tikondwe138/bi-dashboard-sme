@@ -1,10 +1,10 @@
 import plotly.express as px
 
-# Different shades of green for bars and pie
+# Consistent green palette for all visuals
 GREEN_SHADES = ['#006400', '#228B22', '#32CD32', '#7CFC00', '#ADFF2F']
 
 def sales_by_region(df):
-    data = df.groupby("Region")["Sales"].sum().reset_index()
+    data = df.groupby("Region", as_index=False)["Sales"].sum()
     fig = px.bar(
         data,
         x="Region",
@@ -16,11 +16,12 @@ def sales_by_region(df):
     )
     fig.update_layout(
         margin=dict(t=40, b=20, l=20, r=20),
-        plot_bgcolor='white',
-        paper_bgcolor='white',
-        font=dict(color='black'),
+        plot_bgcolor='#ffffff',
+        paper_bgcolor='#ffffff',
+        font=dict(color='#222'),
         autosize=True,
-        height=400
+        height=400,
+        showlegend=False
     )
     fig.update_traces(textfont_size=12)
     return fig
@@ -36,18 +37,23 @@ def age_distribution(df):
     )
     fig.update_layout(
         margin=dict(t=40, b=20, l=20, r=20),
-        plot_bgcolor='white',
-        paper_bgcolor='white',
-        font=dict(color='black'),
+        plot_bgcolor='#ffffff',
+        paper_bgcolor='#ffffff',
+        font=dict(color='#222'),
         autosize=True,
-        height=400
+        height=400,
+        barmode='overlay'
     )
+    fig.update_traces(opacity=0.85)
     return fig
 
 def gender_pie(df):
+    gender_counts = df["Customer Gender"].value_counts().reset_index()
+    gender_counts.columns = ["Customer Gender", "Count"]
     fig = px.pie(
-        df,
+        gender_counts,
         names="Customer Gender",
+        values="Count",
         hole=0.4,
         title="Customer Gender Split",
         color="Customer Gender",
@@ -55,8 +61,12 @@ def gender_pie(df):
     )
     fig.update_layout(
         margin=dict(t=40, b=20, l=20, r=20),
-        font=dict(color='black'),
+        font=dict(color='#222'),
         autosize=True,
-        height=350
+        height=350,
+        showlegend=True,
+        plot_bgcolor='#ffffff',
+        paper_bgcolor='#ffffff'
     )
+    fig.update_traces(textinfo='percent+label', pull=[0.03, 0.03])
     return fig

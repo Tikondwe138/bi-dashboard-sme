@@ -25,8 +25,18 @@ translations = {
 
 current_language = "en"
 
-def t(key):
+def set_language(lang: str):
+    """Set the current language for translations."""
+    global current_language
+    if lang in translations:
+        current_language = lang
+    else:
+        raise ValueError(f"Language '{lang}' not supported.")
+
+def t(key: str) -> str:
+    """Translate a key based on the current language."""
     return translations[current_language].get(key, key)
 
-def format_currency(value):
+def format_currency(value) -> str:
+    """Format currency based on the current language."""
     return translations[current_language]["currency_format"](value)

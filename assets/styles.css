@@ -1,36 +1,142 @@
-/* assets/styles.css - Custom Streamlit CSS */
+/* assets/styles.css - Unified White/Black/Green Theme */
 
-/* Make entire app background white and text black */
+/* ========== Global Styles ========== */
 body, .block-container, .main {
-  background-color: #ffffff !important; /* White background */
-  color: #000000 !important; /* Black text */
+  background-color: #ffffff !important; /* Pure white canvas */
+  color: #000000 !important;            /* Universal black text */
+  font-family: 'Segoe UI', 'Arial', sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Headers */
-h1, h2, h3 {
-  color: #000000 !important; /* Black headers */
+/* ========== Headings & Text ========== */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  color: #000000 !important; /* Force all text black */
+  font-family: inherit;
 }
 
-/* Padding for main content container */
-.block-container {
-  padding-top: 1rem;
+/* ========== Sidebar ========== */
+.stSidebar, .css-1d391kg, .css-1v3fvcr {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-right: 1px solid #e0e0e0;
 }
 
-/* Metric container styling */
+.stSidebar h1, .stSidebar h2, .stSidebar .css-1v3fvcr, .css-1d391kg h1 {
+  color: #000000 !important; /* Black sidebar text */
+}
+
+/* ========== Metric Cards ========== */
 .metric-container {
   background-color: #ffffff !important;
   border-radius: 0.5rem;
   padding: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
   text-align: center;
-  color: #000000 !important; /* Ensure metric text is black */
+  color: #000000 !important;
 }
 
-/* Section headers with dark green */
-.region-header {
-  color: #064635 !important; /* Dark green */
-  font-size: 18px;
+/* ========== Section Headers ========== */
+.region-header, .section-header {
+  color: #064635 !important; /* Dark green accent */
+  font-size: 1.15rem;
   font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Tables (st.dataframe) ========== */
+.stDataFrame, .css-1p8u58t, .css-hi6a2p {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  padding: 0.5rem !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+/* ========== Charts (Plotly) ========== */
+.stPlotlyChart > div {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07) !important;
+  padding: 0.5rem !important;
+}
+
+.plotly-graph-div .main-svg {
+  background-color: #ffffff !important;
+}
+
+/* ========== Inputs & Buttons ========== */
+.stButton button, button {
+  background-color: #064635 !important;
+  color: #ffffff !important;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.stButton button:hover, button:hover {
+  background-color: #046326 !important;
+}
+
+.stTextInput > div > input, .stSelectbox > div, .stSlider > div {
+  background-color: #f8f8f8 !important;
+  color: #000000 !important;
+  border-radius: 0.4rem;
+  border: 1px solid #e0e0e0 !important;
+  font-size: 1rem;
+}
+
+.stRadio > div, .stSelectbox > div, .stSlider > div {
+  color: #000000 !important;
+}
+
+/* ========== Alerts & Info Boxes ========== */
+.stAlert, .css-1t8l2tu, .css-1w7v3tn {
+  background-color: #f4f4f4 !important;
+  border-left: 4px solid #064635 !important;
+  color: #000000 !important;
+  border-radius: 0.5rem;
+  padding: 1rem !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* ========== Links ========== */
+a, .stMarkdown a, .css-znku1x, .stLink {
+  color: #064635 !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a:hover, .stMarkdown a:hover, .stLink:hover {
+  text-decoration: underline;
+  color: #046326 !important;
+}
+
+/* ========== Footer ========== */
+footer, .footer {
+  color: #666666 !important;
+  background: transparent !important;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+/* ========== Misc ========== */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2rem 0 1rem 0;
 }

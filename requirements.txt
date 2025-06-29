@@ -4,3 +4,6 @@ plotly>=5.10
 fpdf>=1.7
 xlsxwriter>=3.1
 openpyxl>=3.1
+scikit-learn>=1.0
+prophet>=1.1
+numpy>=1.21
